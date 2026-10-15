@@ -14,7 +14,7 @@ npm run review     # contact sheets in out/review/, and a check that every tile'
 npm run render     # out/tiny-clips-hype.mp4
 ```
 
-The `hype-video` skill (`.github/skills/hype-video/SKILL.md`) walks through the whole flow,
+The `hype-video` skill (`../../.github/skills/hype-video/SKILL.md`) walks through the whole flow,
 including a short creative brief, choosing features from the changelogs, and drafting the post.
 
 ## Render it
