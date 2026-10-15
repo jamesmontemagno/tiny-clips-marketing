@@ -22,7 +22,7 @@ including a short creative brief, choosing features from the changelogs, and dra
 
 ## Render it
 
-Requires Node 20+, `ffmpeg` on your `PATH`, and Microsoft Edge or Google Chrome installed (set
+Requires Node 22.12+, `ffmpeg` on your `PATH`, and Microsoft Edge or Google Chrome installed (set
 `BROWSER_PATH` to point at a different Chromium-based browser).
 
 ```bash

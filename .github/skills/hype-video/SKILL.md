@@ -189,5 +189,5 @@ a pull request unless asked.
 
 ## Requirements
 
-Node 20 or later, `ffmpeg` on the `PATH`, and Microsoft Edge or Google Chrome. Set `BROWSER_PATH`
+Node 22.12 or later, `ffmpeg` on the `PATH`, and Microsoft Edge or Google Chrome. Set `BROWSER_PATH`
 to use a different Chromium-based browser.
