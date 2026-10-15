@@ -8,6 +8,15 @@ HTML/CSS composition with user-supplied Studio footage, rendered frame by frame 
 browser. The polished lo-fi soundtrack is synthesized locally in Node.
 The selected creative profile uses subtle motion and an ice (cyan/blue/violet) palette.
 
+## Finished video
+
+[Watch or download the approved Studio launch video](./tiny-clips-studio-launch.mp4).
+The checked-in MP4 is 45 seconds, 1920×1080 at 60 fps, with H.264 video and AAC audio
+(about 30 MiB). No 720p downscale is needed.
+
+Rendering still writes to ignored `out/`. Replace the checked-in MP4 only when approving a new
+final cut; contact sheets, extracted frames, audio intermediates, and drafts stay untracked.
+
 ## Hype a new release
 
 Edit `src/content.js` — it holds the “What’s new” tiles and the line that introduces them — then:
@@ -48,22 +57,26 @@ Everything is cut to a 128 BPM grid: one bar is 1.875 s and the piece is 24 bars
 
 | Bars | Time | Scene |
 | --- | --- | --- |
-| 0–1 | 0:00 | Tiny Clips 2.0: Hello, Studio |
-| 1–4 | 0:01.875 | Animated separate screen/camera layers, bubble to side-by-side layouts, backgrounds and padding |
-| 4–7 | 0:07.5 | Actual Windows Studio controls/timeline with a privacy-safe, illustrative animated canvas |
-| 7–9 | 0:13.125 | Zoom, cut, speed, MP4 export, editable projects, and enabling Studio Preview |
-| 9–12 | 0:16.875 | A rendered Studio video recap and Preview call to action |
-| 12–15 | 0:22.5 | Screenshot, video, GIF; microphone and system audio; menu bar and tray |
+| 0–3 | 0:00 | One illustrative editor transforms: trim handles move, then screen/camera composition, inspector, scenes and editing lanes appear |
+| 3–6 | 0:05.625 | Three benefits shown immediately and demonstrated in sync: separate screen/camera layers, scene layouts, backgrounds/padding/corners |
+| 6–8 | 0:11.25 | Actual Windows Studio controls/timeline with a privacy-safe, illustrative animated canvas |
+| 8–10 | 0:15 | Zoom, cut, speed, MP4 export, editable projects, and enabling Studio Preview |
+| 10–13 | 0:18.75 | A rendered Studio video recap and Preview call to action |
+| 13–15 | 0:24.375 | Screenshot, video, GIF; microphone and system audio; menu bar and tray |
 | 15–17 | 0:28.125 | Screenshot editor: arrows, steps, redaction, stickers, text, backgrounds |
 | 17–21 | 0:31.875 | Six recent cross-platform features from `src/content.js` |
-| 21–24 | 0:39.4 | Tiny Clips · Available on macOS and Windows · tinyclips.app |
+| 21–24 | 0:39.375 | Tiny Clips · Available on macOS and Windows · tinyclips.app |
 
-Studio owns exactly the first 22.5 seconds, including the release title and rendered-video
-recap. Its early-preview status and opt-in setting are explicit; ordinary video recording is
-not presented as Studio. Scene transitions and background movement have been softened for
-this cut, and a melodic lo-fi motif gives the soundtrack a clearer music lead. The second half
-highlights shipped cross-platform additions, rather than implying every tile first shipped in
-2.0. The established download outro is unchanged.
+Studio owns exactly the first 24.375 seconds. The opening holds a single editor in place while
+it grows from a quick trimmer into Studio, rather than comparing two small static diagrams.
+The next shot puts all three composition benefits on screen from its first frame, highlighting
+each as the screen/camera layers, scene layout, and framing change. These diagrams are illustrative,
+not recorded app UI; the following shot shows the real editor controls and timeline.
+Its early-preview status and opt-in setting are explicit; ordinary video recording is not
+presented as Studio. Scene transitions and background movement have been softened for this cut,
+and a melodic lo-fi motif gives the soundtrack a clearer music lead. The second half highlights
+shipped cross-platform additions, rather than implying every tile first shipped in 2.0. The
+established download outro is unchanged.
 The result preview puts its export controls along the top of the video and the Scene 01 layout
 label below them.
 

@@ -33,33 +33,69 @@
   <div class="bg"><i class="blob b1"></i><i class="blob b2"></i><i class="blob b3"></i></div>
   <div class="camera">
 
-    <section class="scene s-studio-title" data-bar="0" data-bars="1">
+    <section class="scene s-studio-title" data-bar="0" data-bars="3">
       <div class="tint center"></div>
       <div class="release-lockup a-up"><svg><use href="#tc-icon"/></svg><span>Tiny Clips 2.0</span></div>
-      <p class="kicker a-up" data-at="0.25">A new way to create</p>
-      <h1 class="a-up" data-at="0.5">Hello, <span>Studio.</span></h1>
-      <p class="studio-platforms a-up" data-at="1">macOS + Windows <span>Studio Preview</span></p>
-    </section>
-
-    <section class="scene s-studio-layout" data-bar="1" data-bars="3" style="--accent: var(--cyan)">
-      <div class="tint"></div>
-      <div class="studio-copy">
-        <span class="kicker a-up">Meet Tiny Clips Studio</span>
-        <h2 class="a-up" data-at="0.5">One take.<br>More possibilities.</h2>
-        <p class="a-up" data-at="1">Record screen and camera<br>as separate layers.</p>
-        <div class="studio-labels">
-          <span class="a-up" data-at="3">Compose your shot.</span>
-          <span class="a-up" data-at="8">Switch up the layout.</span>
-          <span class="a-up" data-at="10">Make it yours.</span>
+      <div class="studio-story">
+        <div class="story-state story-before">
+          <h1>From quick<br>trims.</h1>
+          <p>Set the start.<br>Set the end.</p>
+        </div>
+        <div class="story-state story-after">
+          <h1>To a full<br><span>production<br>studio.</span></h1>
+          <p>Scenes. Zooms. Cuts. Speed.<br>One editable project.</p>
         </div>
       </div>
-      <div class="studio-demo a-rise" data-studio-demo></div>
-      <p class="studio-footnote a-up" data-at="2">Backgrounds · Padding · Rounded corners · Camera layouts</p>
+      <p class="studio-platforms">macOS + Windows <span>Studio Preview</span></p>
+      <div class="transform-editor">
+        <header class="transform-header">
+          <svg><use href="#tc-icon"/></svg>
+          <strong class="transform-old-name">Video trimmer</strong>
+          <strong class="transform-new-name">Tiny Clips Studio</strong>
+          <span class="transform-export">Export MP4</span>
+        </header>
+        <div class="studio-demo transform-preview" data-studio-demo="transform"></div>
+        <aside class="transform-inspector">
+          <strong>Scene</strong>
+          <span>Layout</span>
+          <b>Side by side</b>
+          <span>Background</span>
+          <div class="studio-swatches"><i></i><i></i><i></i></div>
+          <span>Padding</span>
+          <div class="studio-setting"><i></i></div>
+          <span>Rounded corners</span>
+          <div class="studio-setting corners"><i></i></div>
+        </aside>
+        <div class="transform-timeline">
+          <div class="transform-lane transform-scenes"><b>Scenes</b><div><span>Camera bubble</span><span>Side by side</span></div></div>
+          <div class="transform-lane transform-effects"><b>Edits</b><div><span>Zoom</span><span>Cut</span><span>2× speed</span></div></div>
+          <div class="transform-lane transform-trim"><b>Trim</b><div><i class="transform-range"></i></div></div>
+        </div>
+      </div>
+      <p class="transform-caption">Illustrative workflow</p>
     </section>
 
-    <section class="scene s-studio-recorded" data-bar="4" data-bars="3">
+    <section class="scene s-studio-layout" data-bar="3" data-bars="3" style="--accent: var(--cyan)">
+      <div class="tint"></div>
+      <div class="studio-copy">
+        <h2>Meet Tiny<br>Clips Studio.</h2>
+        <ul class="studio-benefits">
+          <li class="benefit-layers"><strong>Screen + camera. Separate layers.</strong><span>Compose them after you record.</span></li>
+          <li class="benefit-layouts"><strong>Change layouts. Scene by scene.</strong><span>Camera bubble to side by side.</span></li>
+          <li class="benefit-style"><strong>Make every frame yours.</strong><span>Backgrounds, padding, rounded corners.</span></li>
+        </ul>
+      </div>
+      <div class="studio-demo feature-demo" data-studio-demo="features"></div>
+      <div class="feature-controls">
+        <div class="feature-phase phase-layers"><strong>Screen + camera</strong><span>Recorded separately. Composed together.</span></div>
+        <div class="feature-phase phase-layouts"><strong>Camera layouts</strong><div class="layout-options"><span>Camera bubble</span><span>Side by side</span></div></div>
+        <div class="feature-phase phase-style"><strong>Your background. Your framing.</strong><div class="studio-swatches"><i></i><i></i><i></i></div><span>Padding + corners</span></div>
+      </div>
+    </section>
+
+    <section class="scene s-studio-recorded" data-bar="6" data-bars="2">
       <header class="studio-heading">
-        <div><span class="kicker a-up">Inside Studio</span><h2 class="a-up" data-at="0.5">Your recording. Your direction.</h2></div>
+        <div><span class="kicker a-up">Inside Studio</span><h2 class="a-up" data-at="0.5">Build scenes. Direct the details.</h2></div>
       </header>
       <figure class="studio-footage a-up" data-at="0.5">
         <img id="studio-recording" src="../out/studio-frames/frame-000.jpg" alt="Recorded Studio editor controls and timeline">
@@ -67,10 +103,10 @@
       </figure>
     </section>
 
-    <section class="scene s-studio-edit" data-bar="7" data-bars="2" style="--accent: var(--cyan)">
+    <section class="scene s-studio-edit" data-bar="8" data-bars="2" style="--accent: var(--cyan)">
       <div class="tint center"></div>
-      <span class="kicker a-up">From first take to final cut</span>
-      <h2 class="a-up" data-at="0.5">Keep the good parts.</h2>
+      <span class="kicker a-up">Beyond the basic trim</span>
+      <h2 class="a-up" data-at="0.5">Shape every moment.</h2>
       <div class="edit-actions">
         <div class="a-up" data-at="1"><kbd>Z</kbd><strong>Zoom in</strong><span>Focus the moment.</span></div>
         <div class="a-up" data-at="2"><kbd>X</kbd><strong>Cut it</strong><span>Skip the extra.</span></div>
@@ -87,7 +123,7 @@
       <p class="studio-enable a-up" data-at="7">Enable Studio Preview in Settings › Studio</p>
     </section>
 
-    <section class="scene s-studio-result" data-bar="9" data-bars="3">
+    <section class="scene s-studio-result" data-bar="10" data-bars="3">
       <div class="tint center"></div>
       <div class="result-copy">
         <span class="kicker a-up">The finished Studio video</span>
@@ -99,7 +135,7 @@
       </div>
     </section>
 
-    <section class="scene s-toolkit" data-bar="12" data-bars="3">
+    <section class="scene s-toolkit" data-bar="13" data-bars="2">
       <div class="tint center"></div>
       <span class="kicker a-up">One tiny app</span>
       <h2 class="a-up" data-at="0.5">Capture. Create. Share.</h2>
@@ -166,7 +202,7 @@
       </div>
     </section>
   </div>
-  <div class="bug" data-bar="1" data-bars="3"><svg><use href="#tc-icon"/></svg>Tiny Clips 2.0</div>
+  <div class="bug" data-bar="3" data-bars="3"><svg><use href="#tc-icon"/></svg>Tiny Clips 2.0</div>
   <div id="flashes"></div><div id="grain"></div><div class="vignette"></div>
 </div>
 <script src="creative.js"></script><script src="content.js"></script><script src="player.js"></script>

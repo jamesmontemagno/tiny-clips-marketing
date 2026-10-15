@@ -696,20 +696,90 @@ kbd {
 
 /* ---- Studio 2.0 release cut --------------------------------------------------------------- */
 
-.s-studio-title { text-align: center; }
-.release-lockup { position: absolute; top: 130px; left: 0; right: 0; display: flex; align-items: center; justify-content: center; gap: 24px; font-size: 44px; font-weight: 700; }
-.release-lockup svg { width: 76px; height: 76px; }
-.s-studio-title > .kicker { position: absolute; top: 340px; left: 0; right: 0; color: var(--cyan); }
-.s-studio-title h1 { position: absolute; top: 410px; left: 0; right: 0; font-size: 196px; line-height: 1.1; font-weight: 800; letter-spacing: -0.055em; }
-.s-studio-title h1 span { color: var(--cyan); }
-.studio-platforms { position: absolute; top: 720px; left: 0; right: 0; font-size: 36px; color: var(--lav); }
-.studio-platforms span { margin-left: 30px; padding: 10px 22px; border: 1px solid var(--line); border-radius: 30px; font-size: 26px; vertical-align: middle; }
-.studio-copy { position: absolute; left: 100px; top: 230px; width: 650px; }
-.studio-copy h2 { margin: 30px 0; font-size: 88px; line-height: 1.06; font-weight: 750; }
-.studio-copy > p { font-size: 38px; line-height: 1.4; color: var(--lav); }
-.studio-labels { display: grid; gap: 16px; margin-top: 38px; font-size: 30px; color: var(--cyan); }
+.release-lockup { position: absolute; top: 100px; left: 100px; display: flex; align-items: center; gap: 20px; font-size: 36px; font-weight: 700; }
+.release-lockup svg { width: 64px; height: 64px; }
+.studio-story { position: absolute; left: 100px; top: 280px; width: 610px; }
+.story-state { position: absolute; inset: 0 0 auto; animation: story-before var(--dur) linear var(--start) both; }
+.story-state h1 { font-size: 104px; line-height: 1.02; font-weight: 780; letter-spacing: -0.035em; }
+.story-state h1 span { color: var(--cyan); }
+.story-state p { margin-top: 34px; color: var(--lav); font-size: 31px; line-height: 1.5; }
+.story-after { animation-name: story-after; }
+@keyframes story-before { 0%, 24% { opacity: 1; } 32%, 100% { opacity: 0; } }
+@keyframes story-after { 0%, 34% { opacity: 0; } 44%, 100% { opacity: 1; } }
+.studio-platforms { position: absolute; top: 930px; left: 100px; font-size: 27px; color: var(--lav); }
+.studio-platforms span { margin-left: 16px; padding: 9px 16px; border: 1px solid var(--line); border-radius: 30px; font-size: 22px; }
+.transform-editor { position: absolute; left: 750px; top: 185px; width: 1080px; height: 720px; overflow: hidden; border-radius: 20px; background: var(--surface); box-shadow: 0 36px 90px #0008; }
+.transform-header { position: absolute; inset: 0 0 auto; height: 66px; display: flex; align-items: center; gap: 12px; padding: 0 24px; background: var(--surface-2); }
+.transform-header svg { width: 30px; height: 30px; }
+.transform-header > strong { position: absolute; left: 70px; font-size: 22px; font-weight: 650; }
+.transform-old-name { animation: story-before var(--dur) linear var(--start) both; }
+.transform-new-name { animation: story-after var(--dur) linear var(--start) both; }
+.transform-export { margin-left: auto; padding: 8px 14px; border-radius: 8px; background: var(--blue); color: #07111a; font-size: 18px; font-weight: 750; }
+.studio-demo.transform-preview { position: absolute; left: 22px; right: 22px; top: 86px; height: 520px; border-radius: 12px; animation: transform-workspace var(--dur) linear var(--start) both; }
+@keyframes transform-workspace {
+  0%, 24% { right: 22px; height: 520px; }
+  44%, 100% { right: 252px; height: 435px; }
+}
+.transform-preview .demo-backdrop { background: var(--bg); }
+.transform-preview .demo-backdrop::after { background: linear-gradient(135deg, #187cc1, #38dcc7); animation: transform-reveal var(--dur) linear var(--start) both; }
+.transform-preview .demo-screen { animation: transform-screen var(--dur) linear var(--start) both; }
+@keyframes transform-screen {
+  0%, 24% { left: 0; top: 0; width: 100%; height: 100%; animation-timing-function: var(--out); }
+  44%, 100% { left: 6%; top: 10%; width: 58%; height: 80%; }
+}
+.transform-preview .demo-camera { animation: transform-camera var(--dur) linear var(--start) both; }
+@keyframes transform-camera {
+  0%, 27% { opacity: 0; left: 76%; top: 60%; width: 19%; height: 30%; border-radius: 999px; animation-timing-function: var(--out); }
+  46%, 100% { opacity: 1; left: 68%; top: 10%; width: 26%; height: 80%; border-radius: 20px; }
+}
+.transform-preview .win-body aside { padding: 16px 12px; gap: 14px; }
+.transform-preview .win-body main { padding: 16px; gap: 14px; }
+.transform-preview .m-cards { gap: 10px; }
+.transform-preview .m-cards div { padding: 10px; gap: 8px; }
+.transform-preview .m-head em { width: 70px; }
+.transform-inspector { position: absolute; right: 22px; top: 102px; width: 204px; display: grid; gap: 16px; animation: transform-reveal var(--dur) linear var(--start) both; }
+.transform-inspector > strong { font-size: 25px; }
+.transform-inspector > span { color: var(--lav); font-size: 19px; }
+.transform-inspector > b { padding: 10px 12px; background: var(--surface-2); border-radius: 8px; color: var(--cyan); font-size: 20px; font-weight: 650; }
+.studio-swatches { display: flex; gap: 12px; }
+.studio-swatches i { width: 34px; height: 34px; border-radius: 7px; background: linear-gradient(135deg, #187cc1, #38dcc7); }
+.studio-swatches i:nth-child(2) { background: linear-gradient(135deg, #3056a1, #a08bfa); }
+.studio-swatches i:nth-child(3) { background: #14283e; }
+.studio-setting { position: relative; height: 5px; margin: 6px 0; border-radius: 3px; background: var(--line); }
+.studio-setting i { position: absolute; left: 40%; top: -5px; width: 15px; height: 15px; border-radius: 50%; background: var(--cyan); }
+.studio-setting.corners i { left: 65%; }
+@keyframes transform-reveal { 0%, 34% { opacity: 0; } 48%, 100% { opacity: 1; } }
+.transform-timeline { position: absolute; left: 24px; right: 24px; bottom: 26px; display: grid; gap: 10px; }
+.transform-lane { display: flex; align-items: center; gap: 18px; height: 38px; }
+.transform-lane > b { width: 76px; flex-shrink: 0; color: var(--lav); font-size: 19px; font-weight: 600; }
+.transform-lane > div { position: relative; flex: 1; height: 100%; border-radius: 6px; background: var(--surface-2); }
+.transform-scenes, .transform-effects { animation: transform-reveal var(--dur) linear var(--start) both; }
+.transform-scenes > div { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; background: transparent; }
+.transform-lane span { display: block; padding: 8px 14px; border-radius: 6px; font-size: 19px; font-weight: 600; }
+.transform-scenes span { background: #567dff55; color: var(--lav); }
+.transform-effects > div { display: flex; align-items: center; justify-content: space-around; background: transparent; }
+.transform-effects span { min-width: 130px; background: #31b8f533; color: var(--cyan); }
+.transform-effects span:nth-child(2) { background: #ff657b33; color: #ffc3cc; }
+.transform-effects span:nth-child(3) { background: #af8fff33; color: #decfff; }
+.transform-range { position: absolute; inset: 0 5%; border: 3px solid var(--cyan); border-radius: 6px; background: linear-gradient(90deg, #31b8f544, #567dff77); animation: transform-trim var(--dur) linear var(--start) both; }
+.transform-range::before, .transform-range::after { content: ""; position: absolute; top: 4px; bottom: 4px; width: 4px; border-radius: 2px; background: var(--cyan); }
+.transform-range::before { left: 5px; }
+.transform-range::after { right: 5px; }
+@keyframes transform-trim { 0%, 4% { left: 5%; right: 5%; } 18%, 100% { left: 18%; right: 16%; } }
+.transform-caption { position: absolute; left: 750px; top: 937px; width: 1080px; text-align: center; color: var(--lav); font-size: 22px; }
+.studio-copy { position: absolute; left: 100px; top: 210px; width: 650px; }
+.studio-copy h2 { font-size: 88px; line-height: 1.03; font-weight: 750; letter-spacing: -0.035em; }
+.studio-benefits { display: grid; gap: 38px; margin-top: 56px; }
+.studio-benefits li { display: grid; gap: 9px; opacity: 0.6; animation: benefit-layers var(--dur) linear var(--start) both; }
+.studio-benefits strong { color: var(--cyan); font-size: 32px; font-weight: 650; letter-spacing: -0.015em; }
+.studio-benefits span { color: var(--lav); font-size: 27px; }
+.studio-benefits .benefit-layouts { animation-name: benefit-layouts; }
+.studio-benefits .benefit-style { animation-name: benefit-style; }
+@keyframes benefit-layers { 0%, 29% { opacity: 1; } 34%, 100% { opacity: 0.6; } }
+@keyframes benefit-layouts { 0%, 29% { opacity: 0.6; } 34%, 62% { opacity: 1; } 67%, 100% { opacity: 0.6; } }
+@keyframes benefit-style { 0%, 62% { opacity: 0.6; } 67%, 100% { opacity: 1; } }
 .studio-demo { position: relative; overflow: hidden; border-radius: 28px; background: var(--surface); }
-.s-studio-layout > .studio-demo { position: absolute; left: 810px; top: 205px; width: 1010px; height: 650px; box-shadow: 0 40px 120px #0007; border: 1px solid var(--line); }
+.s-studio-layout > .studio-demo { position: absolute; left: 810px; top: 185px; width: 1010px; height: 640px; box-shadow: 0 40px 120px #0007; }
 .demo-backdrop { position: absolute; inset: 0; background: linear-gradient(135deg, #187cc1, #38dcc7); }
 .demo-backdrop::after { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, #3056a1, #a08bfa); animation: a-fade 1.2s ease calc(var(--start) + var(--beat) * 11) both; }
 .demo-screen { position: absolute; left: 6%; top: 10%; width: 88%; height: 80%; animation: studio-screen var(--dur) var(--out) var(--start) both; }
@@ -731,7 +801,41 @@ kbd {
 .demo-layout-label span + span { animation-name: side-label; }
 @keyframes bubble-label { 0%, 35% { opacity: 1; } 40%, 100% { opacity: 0; } }
 @keyframes side-label { 0%, 35% { opacity: 0; } 40%, 100% { opacity: 1; } }
-.studio-footnote { position: absolute; left: 810px; top: 900px; width: 1010px; text-align: center; color: var(--lav); font-size: 27px; }
+.feature-demo .demo-screen { animation-name: feature-screen; animation-timing-function: linear; }
+.feature-demo .demo-camera { animation-name: feature-camera; animation-timing-function: linear; }
+@keyframes feature-screen {
+  0%, 28% { left: 6%; top: 10%; width: 88%; height: 80%; animation-timing-function: var(--out); }
+  38%, 62% { left: 6%; top: 10%; width: 58%; height: 80%; animation-timing-function: var(--out); }
+  76%, 100% { left: 10%; top: 17%; width: 54%; height: 66%; }
+}
+@keyframes feature-camera {
+  0%, 28% { left: 76%; top: 64%; width: 19%; height: 28%; border-radius: 999px; animation-timing-function: var(--out); }
+  38%, 62% { left: 68%; top: 10%; width: 26%; height: 80%; border-radius: 20px; animation-timing-function: var(--out); }
+  76%, 100% { left: 68%; top: 17%; width: 22%; height: 66%; border-radius: 28px; }
+}
+.feature-demo .demo-backdrop::after { animation: feature-background var(--dur) linear var(--start) both; }
+@keyframes feature-background { 0%, 62% { opacity: 0; } 76%, 100% { opacity: 1; } }
+.feature-demo .demo-screen .win { animation: feature-corners var(--dur) linear var(--start) both; }
+@keyframes feature-corners { 0%, 62% { border-radius: 8px; } 76%, 100% { border-radius: 28px; } }
+.source-label { position: absolute; z-index: 1; padding: 7px 12px; border-radius: 7px; background: #07111a; color: #fff; font-size: 20px; font-weight: 650; white-space: nowrap; }
+.source-screen { top: 12px; left: 12px; }
+.source-camera { left: 50%; bottom: 14px; translate: -50% 0; }
+.feature-controls { position: absolute; left: 810px; top: 860px; width: 1010px; height: 100px; }
+.feature-phase { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 22px; animation: phase-layers var(--dur) linear var(--start) both; }
+.feature-phase strong { font-size: 27px; font-weight: 650; }
+.feature-phase > span { color: var(--lav); font-size: 24px; }
+.phase-layers { flex-direction: column; gap: 10px; }
+.phase-layouts { animation-name: phase-layouts; }
+.phase-style { animation-name: phase-style; gap: 18px; }
+.phase-style strong { font-size: 25px; }
+.phase-style > span { font-size: 22px; }
+.phase-style .studio-swatches i { width: 30px; height: 30px; }
+@keyframes phase-layers { 0%, 28% { opacity: 1; } 30%, 100% { opacity: 0; } }
+@keyframes phase-layouts { 0%, 30% { opacity: 0; } 34%, 60% { opacity: 1; } 62%, 100% { opacity: 0; } }
+@keyframes phase-style { 0%, 62% { opacity: 0; } 67%, 100% { opacity: 1; } }
+.layout-options { display: flex; gap: 12px; }
+.layout-options span { padding: 12px 18px; border-radius: 9px; background: var(--surface-2); color: var(--lav); font-size: 24px; }
+.layout-options span + span { background: var(--cyan); color: #07111a; font-weight: 650; }
 .studio-heading { position: absolute; left: 100px; right: 100px; top: 44px; display: flex; justify-content: space-between; align-items: end; }
 .studio-heading .kicker { font-size: 25px; color: var(--cyan); }
 .studio-heading h2 { margin-top: 12px; font-size: 66px; font-weight: 750; }

@@ -251,9 +251,11 @@
     </div>`;
   for (const demo of document.querySelectorAll('[data-studio-demo]')) {
     const result = demo.dataset.studioDemo === 'result';
+    const transforming = demo.dataset.studioDemo === 'transform';
+    const features = demo.dataset.studioDemo === 'features';
     demo.innerHTML = `
       <div class="${result ? 'demo-backdrop result-backdrop' : 'demo-backdrop'}"></div>
-      <div class="${result ? 'demo-screen result-screen' : 'demo-screen'}"><div class="win" data-mock="app"></div></div>
+      <div class="${result ? 'demo-screen result-screen' : 'demo-screen'}"><div class="win" data-mock="app"></div>${features ? '<span class="source-label source-screen">Screen layer</span>' : ''}</div>
       <div class="${result ? 'demo-camera result-camera' : 'demo-camera'}">
         <svg viewBox="0 0 200 240" aria-hidden="true">
           <ellipse cx="100" cy="240" rx="90" ry="100" fill="#567dff"/>
@@ -261,6 +263,7 @@
           <ellipse cx="100" cy="88" rx="48" ry="61" fill="#f1c6ad"/>
           <path d="M50 94C35 3 162-15 153 94L137 56C112 81 87 51 63 68Z" fill="#162d49"/>
         </svg>
+        ${features ? '<span class="source-label source-camera">Camera layer</span>' : ''}
       </div>
       ${result ? `
         <span class="render-stamp">STUDIO EXPORT <b>MP4</b></span>
@@ -269,6 +272,7 @@
         <div class="render-features"><span>3 scenes</span><span>Zoom</span><span>Cut</span><span>2× speed</span></div>
         <div class="render-progress"><i></i></div>
         <div class="render-end-card">Your story, ready to share.</div>` :
+        transforming || features ? '' :
         '<div class="demo-layout-label"><span>Camera bubble</span><span>Side by side</span></div>'}`;
   }
   for (const el of document.querySelectorAll('[data-mock="app"]')) el.innerHTML = MOCK_APP;
@@ -482,12 +486,13 @@
     }
   }
 
-  // One frame late in every scene, plus one as each "what's new" tile lands.
+  // Sample the opening transformation and each feature demonstration, not just scene endings.
   function reviewTimes() {
     const times = [...document.querySelectorAll('.scene')].map((scene) => (parseFloat(scene.dataset.bar) + parseFloat(scene.dataset.bars) * 0.85) * BAR);
     const newsStart = Number(document.getElementById('whats-new').dataset.bar) * BAR;
     for (const tile of document.querySelectorAll('#new-tiles .tile')) times.push(newsStart + (parseFloat(tile.dataset.at) + 1.5) * BEAT);
-    for (const bar of [1.5, 3, 4.5, 6, 7.75, 8.5, 9.5, 10.5, 11.5, 12.75, 13.5, 14.5, 15.5, 16.5]) times.push(bar * BAR);
+    for (const t of [0.8, 1.6, 2.4, 3.2, 5.4, 6.3, 7.4, 8.2, 9.5, 10.3]) times.push(t);
+    for (const bar of [6.75, 7.75, 8.5, 9.5, 10.5, 11.5, 12.75, 13.5, 14.5, 15.5, 16.5]) times.push(bar * BAR);
     times.push(DURATION - 0.05);
     return [...new Set(times.map((t) => Math.round(t * 100) / 100))].sort((a, b) => a - b);
   }
