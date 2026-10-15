@@ -10,7 +10,7 @@ It is standalone; the Tiny Clips app repository does not include it as a submodu
 - [`.github/skills/hype-video/`](./.github/skills/hype-video/) contains the reusable Hype Video skill.
 
 Open a project folder and follow its README to install dependencies, review the cut, and render.
-Requires Node.js 20 or later, FFmpeg, and Google Chrome or Microsoft Edge.
+Requires Node.js 22.12 or later, FFmpeg, and Google Chrome or Microsoft Edge.
 
 Generated output and dependencies are ignored by Git. Final MP4s are rendered locally and should
 be shared through the appropriate release or media channel rather than committed to source history.
