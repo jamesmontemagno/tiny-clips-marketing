@@ -1,5 +1,5 @@
 // What the video says about the latest releases. To hype new features, edit this file and
-// re-render. This cut leads with Studio; the download outro stays the same.
+// re-render. This cut previews the Windows 2.1 screenshot features.
 //
 // tiles: 3 to 6 entries, shown in order, one landing every few beats.
 //   title   one line, about 22 characters or fewer
@@ -14,53 +14,38 @@
 //     { type: 'stat', value: '60 fps', caption: 'GPU pipeline' }    one big number or word
 //     { type: 'list' }                                              a menu of rows with thumbnails
 //     { type: 'panel', tags: ['demo', 'bug', 'ui'] }                a grid with a details pane
+//     { type: 'background' }                                      custom-image screenshot backdrop
+//     { type: 'gradient' }                                        two color stops and a direction dial
+//     { type: 'resolution' }                                      pre-capture size selection illustration
 //
 // The renderer refuses to run if a tile's text does not fit, so check with `npm run review`.
 window.HYPE_CONTENT = {
   breakdown: {
-    lead: 'Beyond Studio.',
-    title: 'More tiny upgrades.',
+    lead: 'Your screenshot.',
+    title: 'Your style.',
   },
   whatsNew: {
-    pill: 'Tiny Clips 2.0',
-    heading: 'And so much more.',
-    platforms: 'macOS + Windows',
+    pill: '2.1 Preview',
+    heading: 'Make every capture yours.',
+    platforms: 'Windows',
     tiles: [
       {
-        title: 'WebP screenshots',
-        blurb: 'Smaller files with adjustable quality.',
-        accent: 'cyan',
-        visual: { type: 'toggle', from: 'PNG', to: 'WebP', caption: 'Your choice' },
-      },
-      {
-        title: 'H.265 video',
-        blurb: 'Pick the codec that fits your recording.',
-        accent: 'red',
-        visual: { type: 'toggle', from: 'H.264', to: 'H.265', caption: 'HEVC' },
-      },
-      {
-        title: 'Emoji stickers',
-        blurb: 'Drag, resize, and rotate stickers.',
-        accent: 'orange',
-        visual: { type: 'emoji', emoji: ['😎', '🎉', '👀'] },
-      },
-      {
-        title: 'Scale your exports',
-        blurb: 'Click the resolution, pick 10–100%.',
-        accent: 'green',
-        visual: { type: 'slider', from: 100, to: 50, unit: '%', size: [1920, 1080] },
-      },
-      {
-        title: 'Thumbnail previews',
-        blurb: 'Recent captures show up right in the menu.',
+        title: 'Custom backgrounds',
+        blurb: 'Give screenshots a backdrop of your own.',
         accent: 'pink',
-        visual: { type: 'list' },
+        visual: { type: 'background' },
       },
       {
-        title: 'Your clips, organized',
-        blurb: 'Preview, tag, and share in one place.',
-        accent: 'blue',
-        visual: { type: 'panel', tags: ['demo', 'bug', 'ui'] },
+        title: 'Gradient pickers',
+        blurb: 'Choose both colors and the direction.',
+        accent: 'violet',
+        visual: { type: 'gradient' },
+      },
+      {
+        title: 'Resolution quick picks',
+        blurb: 'Pick a capture size before you screenshot.',
+        accent: 'cyan',
+        visual: { type: 'resolution' },
       },
     ],
   },

@@ -104,6 +104,9 @@ Replace the tiles. The file's header comment lists every field; the short versio
 | `stat` | One number or word that sells it | `{ type: 'stat', value: '60 fps', caption: 'GPU pipeline' }` |
 | `list` | Menus, recents, history | `{ type: 'list' }` |
 | `panel` | Library, inspector, details views | `{ type: 'panel', tags: ['demo', 'bug', 'ui'] }` |
+| `background` | Custom screenshot image backgrounds | `{ type: 'background' }` |
+| `gradient` | Custom gradient colors and direction | `{ type: 'gradient' }` |
+| `resolution` | Pre-capture resolution quick picks | `{ type: 'resolution' }` |
 
 Also update `whatsNew.heading` and `whatsNew.pill` if the video is for a named release (for
 example pill `New in 1.9`), and `breakdown.title`, the big line that introduces the section.
