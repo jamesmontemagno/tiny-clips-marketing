@@ -104,9 +104,50 @@
     if (text !== undefined) node.textContent = text;
     return node;
   };
+  const screenshot = () => {
+    const card = el('div', 'feature-capture');
+    card.append(el('div', 'capture-chrome'), el('div', 'capture-heading'));
+    const cards = el('div', 'capture-cards');
+    cards.append(el('i'), el('i'), el('i'));
+    card.append(cards, el('div', 'capture-chart'));
+    return card;
+  };
 
   // Each visual returns the element shown at the top of a tile. `at` is the tile's start in beats.
   const VISUALS = {
+    background(v, at) {
+      const root = el('div', 'tv v-background');
+      root.style.setProperty('--visual-at', `${(at + 3) * BEAT}s`);
+      const landscape = el('div', 'background-landscape');
+      landscape.setAttribute('aria-hidden', 'true');
+      landscape.append(el('i', 'landscape-sun'), el('i', 'landscape-ridge back'), el('i', 'landscape-ridge front'));
+      root.append(landscape, screenshot(), el('span', 'feature-caption', 'Your own backdrop'));
+      return root;
+    },
+    gradient(v, at) {
+      const root = el('div', 'tv v-gradient');
+      root.style.setProperty('--visual-at', `${(at + 3) * BEAT}s`);
+      const wash = el('div', 'gradient-wash');
+      wash.setAttribute('aria-hidden', 'true');
+      root.append(wash, screenshot());
+      const controls = el('div', 'gradient-controls');
+      controls.append(el('i', 'color-stop first'), el('span', 'gradient-link'), el('i', 'color-stop second'), el('i', 'direction-dial'));
+      root.append(controls);
+      return root;
+    },
+    resolution(v, at) {
+      const root = el('div', 'tv v-resolution');
+      root.style.setProperty('--visual-at', `${(at + 3) * BEAT}s`);
+      root.append(el('span', 'resolution-label', 'Choose capture size'));
+      const options = el('div', 'resolution-options');
+      for (let i = 0; i < 3; i++) {
+        const option = el('div', `resolution-option option-${i}`);
+        option.append(el('i', 'resolution-frame'), el('span', 'resolution-line'));
+        options.append(option);
+      }
+      root.append(options, el('span', 'capture-action', 'Select. Capture.'));
+      return root;
+    },
     compare(v) {
       const root = el('div', 'tv v-compare');
       root.style.setProperty('--ratio', Math.max(0.08, Math.min(1, v.ratio ?? 0.5)));
@@ -230,6 +271,12 @@
       grid.append(article);
       slots.append(el('i'));
     });
+    for (const showcase of document.querySelectorAll('[data-feature-visual]')) {
+      const tile = shown[Number(showcase.dataset.featureVisual)];
+      const build = VISUALS[tile?.visual?.type];
+      if (!build) problems.push(`Unknown feature showcase: ${showcase.dataset.featureVisual}.`);
+      else showcase.append(build(tile.visual, 0));
+    }
   }
 
   // ---- Templates -----------------------------------------------------------------------------
@@ -470,6 +517,7 @@
       // The tile clips its contents, so anything reaching the edge would be cut off.
       const box = tile.getBoundingClientRect();
       const clipped = [...tile.querySelectorAll('.tv *')].some((node) => {
+        if (node.closest('[aria-hidden="true"]')) return false;
         const r = node.getBoundingClientRect();
         return r.width > 0 && (r.left < box.left + 6 || r.right > box.right - 6);
       });

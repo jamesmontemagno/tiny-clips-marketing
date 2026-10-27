@@ -1,9 +1,16 @@
 # Tiny Clips hype video
 
-A 45-second, 1920×1080, 60 fps promo for Tiny Clips. The Studio 2.0 cut combines an animated
-HTML/CSS composition with user-supplied Studio footage, rendered frame by frame in a headless
-browser. The polished lo-fi soundtrack is synthesized locally in Node.
-The selected creative profile uses subtle motion and an ice (cyan/blue/violet) palette.
+A 45-second, 1920×1080, 60 fps promo for Tiny Clips, rendered frame by frame from an animated
+HTML/CSS composition. The current cut previews the Windows 2.1 screenshot features: custom
+backgrounds, gradient color/direction pickers, and pre-capture resolution quick picks.
+It uses punchy motion, a neon palette, and an upbeat electronic soundtrack synthesized locally
+in Node. Feature demonstrations are labeled illustrations, not recorded app UI.
+
+The copy says **2.1 Preview** because the public Windows changelog still lists the gradient
+changes as unreleased. Custom backgrounds and pre-capture quick picks are included from the
+campaign brief; no specific resolution presets are claimed. The download outro describes the
+app's macOS and Windows availability, not feature parity for this Windows-only preview.
+The preserved Studio 2.0 campaign remains in `../studio-launch/`.
 
 ## Hype a new release
 
@@ -45,47 +52,23 @@ Everything is cut to a 128 BPM grid: one bar is 1.875 s and the piece is 24 bars
 
 | Bars | Time | Scene |
 | --- | --- | --- |
-| 0–1 | 0:00 | Tiny Clips 2.0: Hello, Studio |
-| 1–4 | 0:01.875 | Animated separate screen/camera layers, bubble to side-by-side layouts, backgrounds and padding |
-| 4–7 | 0:07.5 | Actual Windows Studio controls/timeline with a privacy-safe, illustrative animated canvas |
-| 7–9 | 0:13.125 | Zoom, cut, speed, MP4 export, editable projects, and enabling Studio Preview |
-| 9–12 | 0:16.875 | A rendered Studio video recap and Preview call to action |
-| 12–15 | 0:22.5 | Screenshot, video, GIF; microphone and system audio; menu bar and tray |
-| 15–17 | 0:28.125 | Screenshot editor: arrows, steps, redaction, stickers, text, backgrounds |
-| 17–21 | 0:31.875 | Six recent cross-platform features from `content.js` |
-| 21–24 | 0:39.4 | Tiny Clips · Available on macOS and Windows · tinyclips.app |
+| 0–2 | 0:00 | Tiny Clips 2.1 Preview: Small app. More you. |
+| 2–6 | 0:03.750 | Custom backgrounds: an illustrated backdrop behind a screenshot |
+| 6–10 | 0:11.250 | Gradient pickers: two custom colors and an animated direction dial |
+| 10–14 | 0:18.750 | Resolution quick picks: choose a capture size before taking a screenshot |
+| 14–17 | 0:26.250 | The existing screenshot, video, and GIF toolkit |
+| 17–21 | 0:31.875 | Three Windows 2.1 feature tiles from `content.js` |
+| 21–24 | 0:39.375 | Tiny Clips · Available on macOS and Windows · tinyclips.app |
 
-Studio owns exactly the first 22.5 seconds, including the release title and rendered-video
-recap. Its early-preview status and opt-in setting are explicit; ordinary video recording is
-not presented as Studio. Scene transitions and background movement have been softened for
-this cut, and a melodic lo-fi motif gives the soundtrack a clearer music lead. The second half
-highlights shipped cross-platform additions, rather than implying every tile first shipped in
-2.0. The established download outro is unchanged.
-The result preview puts its export controls along the top of the video and the Scene 01 layout
-label below them.
-
-### Recorded Studio media
-
-`assets/studio-demo.mp4` is a silent 7.5-second excerpt (8.0–15.5 seconds) of the supplied
-2026-10-15 Studio recording. The original preview area is **removed from the encoded asset**,
-not just hidden in CSS, so nested conversation and project text cannot leak into the video.
-The real inspector, controls, cursor, and timeline remain. The composition replaces the
-removed preview with a clean animated illustration, labeled as such.
-
-`scripts/studio-media.mjs` extracts 225 JPEG frames into ignored `out/studio-frames/` before
-review, rendering, or preview. Rendering waits for each selected frame to decode, so seeking
-backward, parallel workers, and still exports all produce the correct frame. Source footage
-is 30 fps, held for two frames in the 60 fps final; the surrounding animation is native 60 fps.
-Missing or short media fails explicitly.
-
-To replace the footage, use an approved 7.5-second, 30 fps clip, remove private content before
-putting it in `assets/`, and adjust the illustrative canvas bounds in `src/styles.css` if the
-editor's geometry changes. Do not commit the unredacted original.
+Each feature showcase reuses the corresponding tile's visual from `content.js`, selected by
+its zero-based `data-feature-visual` index in `index.html`. Keep the three showcase indices and
+their scene copy in sync when changing the tiles. The current cut needs no recorded media.
 
 ## Editing it
 
 - `src/content.js` holds the release-specific copy: the “What’s new” tiles (3 to 6), their
-  visuals,   and an optional breakdown line. The Studio-first storyboard also lives in `src/index.html`.
+  visuals, and an optional breakdown line. The release storyboard also lives in `src/index.html`.
+  `background`, `gradient`, and `resolution` visuals illustrate the current screenshot features.
 - `src/creative.js` holds the selected campaign angle, hype level, motion intensity, music style,
   and visual palette. The `hype-video` skill asks about any choices not specified in the request.
   Supported values are:
@@ -113,5 +96,5 @@ editor's geometry changes. Do not commit the unredacted original.
 - `scripts/audio.mjs` is the soundtrack; the arrangement section maps instruments to bars. If you
   change the tempo or length, change `BPM` and `BARS` in both `audio.mjs` and `player.js`.
 
-The real app screenshots come from `docs/` (`docs/windows-art/editor.png`, `tray.png`,
-`video-editor.png`, and `docs/tinyclips.png`); replace those files to refresh them here too.
+Legacy screenshot templates use `docs/` (`docs/windows-art/editor.png`, `tray.png`,
+`video-editor.png`, and `docs/tinyclips.png`). The current release scenes use only illustrations.
