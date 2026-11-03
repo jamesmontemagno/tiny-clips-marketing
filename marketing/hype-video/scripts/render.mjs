@@ -16,7 +16,6 @@ import { join } from 'node:path';
 import { runInNewContext } from 'node:vm';
 import puppeteer from 'puppeteer-core';
 import { compositionPath, projectDir, startServer } from './static-server.mjs';
-import { prepareStudioFrames } from './studio-media.mjs';
 
 const args = process.argv.slice(2);
 const flag = (name) => args.includes(`--${name}`);
@@ -120,7 +119,6 @@ async function openComposition(url) {
   }
 }
 
-await prepareStudioFrames();
 const { server, port } = await startServer();
 const url = `http://127.0.0.1:${port}${compositionPath}?render`;
 try {

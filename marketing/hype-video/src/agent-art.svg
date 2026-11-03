@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="shell" x2=".74" y2="1" gradientUnits="objectBoundingBox"><stop stop-color="#ffffdf"/><stop offset=".5" stop-color="#dfe8cb"/><stop offset="1" stop-color="#879c9b"/></linearGradient>
+    <linearGradient id="glass" x2=".9" y2="1"><stop stop-color="#304959"/><stop offset="1" stop-color="#0b171f"/></linearGradient>
+    <linearGradient id="world" x1="0" y1="0" x2="1" y2=".85"><stop stop-color="#ffe2ab"/><stop offset=".4" stop-color="#ff9c78"/><stop offset=".73" stop-color="#ed6e74"/><stop offset="1" stop-color="#8e506c"/></linearGradient>
+    <clipPath id="disk"><circle cx="488" cy="219" r="111"/></clipPath>
+  </defs>
+  <symbol id="bot" viewBox="0 0 500 480">
+    <g stroke="#101e29" stroke-width="8" stroke-linejoin="round" stroke-linecap="round">
+      <!-- Antenna, sprung neck and enamel shell. -->
+      <path d="M259 122l12-63" fill="none"/><path d="M261 101l8-40" stroke="#a8c5be" stroke-width="6"/>
+      <circle cx="273" cy="53" r="21" fill="#ff986e"/><circle cx="267" cy="47" r="5" fill="#fff4c9" stroke="none"/>
+      <path d="M192 333v50q52 52 110 0v-52" fill="#788e90"/><path d="M202 352q42 19 88 0m-88 17q42 19 88 0" fill="none" stroke-width="5"/>
+      <path d="M136 413q15-38 64-40 49 39 99 0 57 3 72 45l-18 19H154z" fill="url(#shell)"/>
+      <path d="M177 425h-21m155-28l16 5" stroke="#657784" stroke-width="5"/>
+      <path d="M68 184q0-66 67-74l218-7q63 0 73 60l9 94q4 58-54 79-117 37-246 4-57-14-62-62z" fill="url(#shell)"/>
+      <path d="M86 166q9-32 45-37l137-7" fill="none" stroke="#fffbe3" stroke-width="7"/>
+      <path d="M134 164q82-22 192-17 51 1 54 45l3 40q4 43-45 53-89 18-178 3-45-7-47-43l-3-37q-2-30 24-44z" fill="url(#glass)"/>
+      <path d="M154 184q39-8 71-9" stroke="#82afba" opacity=".35" stroke-width="5"/>
+      <g fill="none" stroke="#caff72" stroke-width="15"><path d="M161 230q10-22 24-1m101-4q12-23 25-1"/><path d="M215 245q20 19 41-2" stroke-width="8"/></g>
+      <path d="M72 205l-16 4q-13 3-12 19l3 33q2 18 18 17l12-2zM426 191l16 1q13 1 15 15l3 30q1 19-17 23l-10 1z" fill="#ff986e"/>
+      <g fill="none" stroke="#4e6970" stroke-width="5"><path d="M154 311l26 4m-24 4l21 3m153-18l22-5m-20 12l20-5"/></g>
+      <rect x="214" y="397" width="69" height="24" rx="9" fill="#182e37" stroke-width="4"/><circle cx="229" cy="409" r="4" fill="#caff72" stroke="none"/><path d="M244 409h24" stroke="#9fb4af" stroke-width="3"/>
+    </g>
+  </symbol>
+  <symbol id="atlas" viewBox="0 0 800 450">
+    <rect width="800" height="450" fill="#182941"/>
+    <g fill="none" stroke="#587187" stroke-width="1" opacity=".55"><circle cx="488" cy="219" r="152"/><circle cx="488" cy="219" r="202"/><circle cx="488" cy="219" r="252" stroke-dasharray="2 8"/><path d="M0 219h800M488 0v450" stroke-dasharray="4 10"/></g>
+    <g fill="#fff0cd"><circle cx="71" cy="97" r="2"/><circle cx="125" cy="378" r="2"/><circle cx="291" cy="61" r="2"/><circle cx="652" cy="137" r="2"/><circle cx="741" cy="323" r="2"/><circle cx="558" cy="415" r="2"/><path d="M177 128l2 7 7 2-7 2-2 8-2-8-6-2 6-2zm480 224 2 6 6 2-6 1-2 7-2-7-6-1 6-2z"/></g>
+    <g transform="rotate(-22 488 219)"><ellipse cx="488" cy="219" rx="188" ry="43" fill="none" stroke="#f0d59e" stroke-width="14"/></g>
+    <circle cx="488" cy="219" r="111" fill="url(#world)"/>
+    <g clip-path="url(#disk)" fill="none" transform="rotate(-16 488 219)"><path d="M349 166q85 29 166 0t119 9m-285 66q62 37 153 5t126 15" stroke="#fbb591" stroke-width="17"/><path d="M345 188q71 34 136 8t133-1m-263 80q76 28 161-3t93 10" stroke="#d57d81" stroke-width="5"/></g>
+    <g transform="rotate(-22 488 219)" fill="none"><path d="M300 219a188 43 0 0 0 376 0" stroke="#fce5bc" stroke-width="14"/><path d="M299 222a192 47 0 0 0 381-2" stroke="#ab8993" stroke-width="3"/></g>
+    <circle cx="347" cy="88" r="10" fill="#cee996"/><circle cx="685" cy="262" r="6" fill="#eaa483"/>
+    <g fill="#eff3df" font-family="Segoe UI, sans-serif"><text x="36" y="53" font-size="19" font-weight="700" letter-spacing="4">ORBIT ATLAS</text><text x="36" y="370" font-size="17" font-family="monospace" letter-spacing="3" fill="#b4cacb">FIELD GUIDE / 06</text><text x="32" y="417" font-size="48" font-weight="700">Saturn</text></g>
+    <g fill="none" stroke="#b7cdca" opacity=".6" stroke-width="2"><path d="M740 37h22v20M762 394v20h-22"/></g>
+  </symbol>
+</svg>

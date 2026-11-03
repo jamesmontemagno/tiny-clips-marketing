@@ -22,7 +22,7 @@
     hypeLevel: ['polished', 'upbeat', 'full-send'],
     motionIntensity: ['subtle', 'punchy', 'high-impact'],
     musicStyle: ['electronic', 'cinematic', 'funk', 'lofi', 'silent'],
-    visualTheme: ['neon', 'sunset', 'ice'],
+    visualTheme: ['neon', 'sunset', 'ice', 'robot'],
   };
   const creative = { ...CREATIVE_DEFAULTS, ...(window.HYPE_CREATIVE ?? {}) };
   const creativeProblems = [];
@@ -53,6 +53,12 @@
   };
   const THEMES = {
     neon: {},
+    robot: {
+      '--bg': '#0c1a21', '--ink': '#f6f5dd', '--lav': '#c5d5ce', '--dim': '#a2b7b4',
+      '--green': '#c9ff76', '--orange': '#ff9e78', '--blue': '#85bcff', '--pink': '#f69eb0',
+      '--cyan': '#8ce4da', '--violet': '#bdb3f2', '--accent': '#c9ff76', '--line': '#46616b',
+      '--surface': '#152830', '--surface-2': '#233e48', '--glow-a': '#13353b', '--glow-b': '#233744', '--glow-c': '#102c39',
+    },
     sunset: {
       '--bg': '#100910', '--ink': '#fffaf5', '--lav': '#ffd7c2', '--dim': 'rgba(255, 215, 195, 0.55)',
       '--blue': '#ef693c', '--violet': '#dc497d', '--pink': '#ff6b91', '--orange': '#ffab3d',
@@ -381,6 +387,10 @@
 
   // ---- Seeking -------------------------------------------------------------------------------
 
+  const typed = [...document.querySelectorAll('[data-type]')].map((node) => ({
+    node, text: node.textContent, start: Number(node.closest('.scene').dataset.bar) * BAR + time(node.dataset.at),
+    duration: time(node.dataset.len),
+  }));
   let animations = [];
   const recording = document.getElementById('studio-recording');
   const recordingScene = recording?.closest('.scene');
@@ -391,6 +401,11 @@
     const clamped = Math.max(0, Math.min(DURATION - 1e-4, t));
     const ms = clamped * 1000;
     for (const a of animations) a.currentTime = ms;
+    for (const { node, text, start, duration } of typed) {
+      const progress = Math.max(0, Math.min(1, (clamped - start) / duration));
+      const value = text.slice(0, Math.floor(progress * text.length));
+      if (node.textContent !== value) node.textContent = value;
+    }
     for (const c of counters) {
       const p = Math.max(0, Math.min(1, (clamped - c.t0) / c.len));
       c.el.textContent = c.format(c.from + (c.to - c.from) * c.ease(p));
@@ -461,7 +476,8 @@
       end = start + bars;
     }
     if (end !== BARS) problems.push(`Timeline must end at bar ${BARS}, found ${end}.`);
-    seek(20.99 * BAR); // every tile has landed and settled
+    const news = document.getElementById('whats-new');
+    seek((Number(news.dataset.bar) + Number(news.dataset.bars) - 0.01) * BAR);
     document.querySelectorAll('#new-tiles .tile').forEach((tile, i) => {
       const title = tile.querySelector('h3');
       const name = `Tile ${i + 1} (“${title.textContent}”)`;
@@ -487,7 +503,7 @@
     const times = [...document.querySelectorAll('.scene')].map((scene) => (parseFloat(scene.dataset.bar) + parseFloat(scene.dataset.bars) * 0.85) * BAR);
     const newsStart = Number(document.getElementById('whats-new').dataset.bar) * BAR;
     for (const tile of document.querySelectorAll('#new-tiles .tile')) times.push(newsStart + (parseFloat(tile.dataset.at) + 1.5) * BEAT);
-    for (const bar of [1.5, 3, 4.5, 6, 7.75, 8.5, 9.5, 10.5, 11.5, 12.75, 13.5, 14.5, 15.5, 16.5]) times.push(bar * BAR);
+    for (const bar of [3, 8.6, 10, 11.75, 12.65, 14.75]) times.push(bar * BAR);
     times.push(DURATION - 0.05);
     return [...new Set(times.map((t) => Math.round(t * 100) / 100))].sort((a, b) => a - b);
   }
