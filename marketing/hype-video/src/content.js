@@ -1,5 +1,5 @@
 // What the video says about the latest releases. To hype new features, edit this file and
-// re-render. This cut leads with Studio; the download outro stays the same.
+// re-render. This cut follows an agent from pairing to a finished Studio export.
 //
 // tiles: 3 to 6 entries, shown in order, one landing every few beats.
 //   title   one line, about 22 characters or fewer
@@ -18,50 +18,20 @@
 // The renderer refuses to run if a tile's text does not fit, so check with `npm run review`.
 window.HYPE_CONTENT = {
   breakdown: {
-    lead: 'Beyond Studio.',
-    title: 'More tiny upgrades.',
+    lead: 'One local connection.',
+    title: 'Bring your own agent.',
   },
   whatsNew: {
-    pill: 'Tiny Clips 2.0',
-    heading: 'And so much more.',
+    pill: 'New in 2.1',
+    heading: 'What else can you ask?',
     platforms: 'macOS + Windows',
     tiles: [
-      {
-        title: 'WebP screenshots',
-        blurb: 'Smaller files with adjustable quality.',
-        accent: 'cyan',
-        visual: { type: 'toggle', from: 'PNG', to: 'WebP', caption: 'Your choice' },
-      },
-      {
-        title: 'H.265 video',
-        blurb: 'Pick the codec that fits your recording.',
-        accent: 'red',
-        visual: { type: 'toggle', from: 'H.264', to: 'H.265', caption: 'HEVC' },
-      },
-      {
-        title: 'Emoji stickers',
-        blurb: 'Drag, resize, and rotate stickers.',
-        accent: 'orange',
-        visual: { type: 'emoji', emoji: ['😎', '🎉', '👀'] },
-      },
-      {
-        title: 'Scale your exports',
-        blurb: 'Click the resolution, pick 10–100%.',
-        accent: 'green',
-        visual: { type: 'slider', from: 100, to: 50, unit: '%', size: [1920, 1080] },
-      },
-      {
-        title: 'Thumbnail previews',
-        blurb: 'Recent captures show up right in the menu.',
-        accent: 'pink',
-        visual: { type: 'list' },
-      },
-      {
-        title: 'Your clips, organized',
-        blurb: 'Preview, tag, and share in one place.',
-        accent: 'blue',
-        visual: { type: 'panel', tags: ['demo', 'bug', 'ui'] },
-      },
+      { title: 'Read the screen', blurb: 'Extract text without touching the clipboard.', accent: 'cyan', visual: { type: 'stat', value: 'OCR', caption: 'Window or region' } },
+      { title: 'Capture a long page', blurb: 'Stitch a screenshot as the page scrolls.', accent: 'orange', visual: { type: 'list' } },
+      { title: 'Mark it up', blurb: 'Add arrows, steps or redactions to a copy.', accent: 'green', visual: { type: 'stat', value: '01 →', caption: 'Numbered callouts' } },
+      { title: 'Trim a take', blurb: 'Record, pause and trim. Keep the original.', accent: 'blue', visual: { type: 'toggle', from: 'Video', to: 'GIF' } },
+      { title: 'Use the library', blurb: 'List, reveal or copy. Approve uploads.', accent: 'pink', visual: { type: 'stat', value: '↗', caption: 'Your files, your call' } },
+      { title: 'Add the agent plugin', blurb: 'Setup, capture, demo, Studio and library.', accent: 'violet', visual: { type: 'stat', value: '5 skills', caption: 'Bundled with MCP' } },
     ],
   },
 };

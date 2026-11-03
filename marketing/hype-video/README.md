@@ -1,9 +1,10 @@
 # Tiny Clips hype video
 
-A 45-second, 1920×1080, 60 fps promo for Tiny Clips. The Studio 2.0 cut combines an animated
-HTML/CSS composition with user-supplied Studio footage, rendered frame by frame in a headless
-browser. The polished lo-fi soundtrack is synthesized locally in Node.
-The selected creative profile uses subtle motion and an ice (cyan/blue/violet) palette.
+**Agent Mode 2.1 — Your next demo starts with a prompt.** A 45-second, 1920×1080, 60 fps animated
+launch film. The example session runs GitHub Copilot CLI inside a stylized VS Code terminal;
+Claude Code and Codex CLI show two other ways to ask for the same local tools. The robot, Orbit
+Atlas demo window, interface illustrations and funk soundtrack are generated locally. No live
+agent, personal screen capture, API key, or Studio footage is needed to preview or render.
 
 ## Hype a new release
 
@@ -39,79 +40,37 @@ node scripts/render.mjs --from 15 --to 21     # render part of the timeline
 node scripts/render.mjs --no-audio            # picture only, for adding your own music
 ```
 
-## Storyboard
+## Storyboard and product grounding
 
-Everything is cut to a 128 BPM grid: one bar is 1.875 s and the piece is 24 bars long.
+At 128 BPM, one bar lasts 1.875 seconds. The 24 bars tell one story:
 
-| Bars | Time | Scene |
+| Bars | Scene | Action |
 | --- | --- | --- |
-| 0–1 | 0:00 | Tiny Clips 2.0: Hello, Studio |
-| 1–4 | 0:01.875 | Animated separate screen/camera layers, bubble to side-by-side layouts, backgrounds and padding |
-| 4–7 | 0:07.5 | Actual Windows Studio controls/timeline with a privacy-safe, illustrative animated canvas |
-| 7–9 | 0:13.125 | Zoom, cut, speed, MP4 export, editable projects, and enabling Studio Preview |
-| 9–12 | 0:16.875 | A rendered Studio video recap and Preview call to action |
-| 12–15 | 0:22.5 | Screenshot, video, GIF; microphone and system audio; menu bar and tray |
-| 15–17 | 0:28.125 | Screenshot editor: arrows, steps, redaction, stickers, text, backgrounds |
-| 17–21 | 0:31.875 | Six recent cross-platform features from `content.js` |
-| 21–24 | 0:39.4 | Tiny Clips · Available on macOS and Windows · tinyclips.app |
+| 0–2 | Agent Mode | The capture robot introduces Tiny Clips 2.1. |
+| 2–5 | Pair once | Enable **Settings → Agent Control**, run `tinyclips pair`, approve scoped access. Audit and revoke in Settings. |
+| 5–8 | Bring your own agent | Copilot CLI records a window, Claude Code annotates a screenshot, Codex CLI trims a take. These are alternative example prompts, not simultaneous sessions. |
+| 8–11 | Type the request | Copilot discovers Orbit Atlas via `capture.targets`, records the window with `recording.startVideo` (`studio=true`) and saves it with `recording.stop`. The click is the user's. |
+| 11–14 | Follow the click | Read the project, suggest a click zoom, then apply the edit. The playhead and preview show the result. |
+| 14–17 | The clip and the cover | `studio.export` writes a new MP4. `editor.saveFrame` extracts a cover image from the exported video. |
+| 17–22 | What else can you ask? | OCR, scrolling capture, annotations and redactions, video/GIF trimming, library actions, and the five plugin Skills. |
+| 22–24 | End card | Agent Mode · macOS + Windows · tinyclips.app. |
 
-Studio owns exactly the first 22.5 seconds, including the release title and rendered-video
-recap. Its early-preview status and opt-in setting are explicit; ordinary video recording is
-not presented as Studio. Scene transitions and background movement have been softened for
-this cut, and a melodic lo-fi motif gives the soundtrack a clearer music lead. The second half
-highlights shipped cross-platform additions, rather than implying every tile first shipped in
-2.0. The established download outro is unchanged.
-The result preview puts its export controls along the top of the video and the Scene 01 layout
-label below them.
+The upcoming-release claims follow the merged [Agent Control implementation](https://github.com/jamesmontemagno/tiny-clips/pull/559),
+including [trim and frame export](https://github.com/jamesmontemagno/tiny-clips/commit/0b21d762b9),
+and the [Studio window click-event update](https://github.com/jamesmontemagno/tiny-clips/pull/562).
+The [integration guide](https://github.com/jamesmontemagno/tiny-clips/blob/de78c2608e/docs/agent-integration.md)
+and [command contract](https://github.com/jamesmontemagno/tiny-clips/blob/de78c2608e/shared/automation/commands.json)
+are the references for running the illustrated workflow:
 
-### Recorded Studio media
+- Use an Agent Control–capable app on the same machine as the agent, with the .NET 10 CLI or a configured local stdio MCP server. Pair first. Tiny Clips provides tools, not the AI model or a built-in chat box.
+- Enable Studio before recording a Studio project. Use the current window ID from target discovery. The agent can capture scrolls or clicks; Tiny Clips does not drive other apps' input. OS permissions and feature entitlements still apply.
+- `studio.zoom.suggest` is read-only. To apply suggestions, preserve manual zooms and pass the observed modification time and revision to `studio.project.edit`. Export to a new MP4 in the configured video folder.
+- Sensitive delete, upload and discard requests need in-app approval. No external service is contacted by the film.
 
-`assets/studio-demo.mp4` is a silent 7.5-second excerpt (8.0–15.5 seconds) of the supplied
-2026-10-15 Studio recording. The original preview area is **removed from the encoded asset**,
-not just hidden in CSS, so nested conversation and project text cannot leak into the video.
-The real inspector, controls, cursor, and timeline remain. The composition replaces the
-removed preview with a clean animated illustration, labeled as such.
+## Editing the cut
 
-`scripts/studio-media.mjs` extracts 225 JPEG frames into ignored `out/studio-frames/` before
-review, rendering, or preview. Rendering waits for each selected frame to decode, so seeking
-backward, parallel workers, and still exports all produce the correct frame. Source footage
-is 30 fps, held for two frames in the 60 fps final; the surrounding animation is native 60 fps.
-Missing or short media fails explicitly.
-
-To replace the footage, use an approved 7.5-second, 30 fps clip, remove private content before
-putting it in `assets/`, and adjust the illustrative canvas bounds in `src/styles.css` if the
-editor's geometry changes. Do not commit the unredacted original.
-
-## Editing it
-
-- `src/content.js` holds the release-specific copy: the “What’s new” tiles (3 to 6), their
-  visuals,   and an optional breakdown line. The Studio-first storyboard also lives in `src/index.html`.
-- `src/creative.js` holds the selected campaign angle, hype level, motion intensity, music style,
-  and visual palette. The `hype-video` skill asks about any choices not specified in the request.
-  Supported values are:
-
-  | Setting | Values |
-  | --- | --- |
-  | `campaign` | `all-in-one`, `new-release`, `creator`, `developer` |
-  | `hypeLevel` | `polished`, `upbeat`, `full-send` |
-  | `motionIntensity` | `subtle`, `punchy`, `high-impact` |
-  | `musicStyle` | `electronic`, `cinematic`, `funk`, `lofi`, `silent` |
-  | `visualTheme` | `neon`, `sunset`, `ice` |
-
-  Defaults preserve the original video. All music is synthesized locally; `silent` removes any
-  previously generated soundtrack and renders without muxing audio. `npm run preview` regenerates
-  the selected soundtrack first, so it cannot accidentally use one from an earlier profile. The
-  timeline stays at 128 BPM, 24 bars, and 45 seconds for every profile.
-- `src/index.html` holds the scenes. A scene is a `<section class="scene" data-bar="8" data-bars="1">`;
-  elements inside are timed with `data-at` in beats from the start of their scene (`data-at="1.5"`)
-  or in seconds (`data-at="0.3s"`).
-- `src/styles.css` holds the look and every animation. Entrances are the `a-*` classes (`a-slam`,
-  `a-pop`, `a-up`, …); tile visuals are the `.v-*` rules.
-- `src/player.js` builds the tiles from `content.js`, puts every CSS animation on one timeline,
-  and exposes `window.__seek(seconds)`. Nothing plays on its own, so a frame depends only on its
-  timestamp.
-- `scripts/audio.mjs` is the soundtrack; the arrangement section maps instruments to bars. If you
-  change the tempo or length, change `BPM` and `BARS` in both `audio.mjs` and `player.js`.
-
-The real app screenshots come from `docs/` (`docs/windows-art/editor.png`, `tray.png`,
-`video-editor.png`, and `docs/tinyclips.png`); replace those files to refresh them here too.
+- [`src/index.html`](src/index.html) is the storyboard. `data-bar` and `data-bars` set scene boundaries; `data-at` offsets an entrance in beats. The prompt types from the seek clock, so scrubbing backward or rendering in parallel is deterministic.
+- [`src/agent-art.svg`](src/agent-art.svg) supplies the original robot and the Orbit Atlas artwork shared by the recording, Studio preview and exports. [`src/agent.css`](src/agent.css) styles the orbital field guide; [`src/styles.css`](src/styles.css) supplies the shared timeline and tile primitives.
+- [`src/content.js`](src/content.js) holds the agent roster headline and the six capability tiles. Run `npm run review` after changing them; inspect the sheets in `out/review/` for readable copy, artwork and timing.
+- [`src/creative.js`](src/creative.js) selects `new-release`, `full-send`, `punchy`, `funk` and `robot` for this cut. The original `neon`, `sunset` and `ice` themes remain available. [`scripts/audio.mjs`](scripts/audio.mjs) synthesizes the music; `silent` skips it.
+- For the footage-based Studio 2.0 film, use the [preserved Studio launch project](../studio-launch/README.md).
