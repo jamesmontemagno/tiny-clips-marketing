@@ -5,7 +5,8 @@ It is standalone; the Tiny Clips app repository does not include it as a submodu
 
 ## Projects
 
-- [`marketing/hype-video/`](./marketing/hype-video/) is the reusable release-video project.
+- [`marketing/hype-video/`](./marketing/hype-video/) is the reusable release-video project, currently
+  the captioned Tiny Clips 2.1 cut for Agent Control, Studio annotations, and captions.
 - [`marketing/studio-launch/`](./marketing/studio-launch/) is the self-contained Studio 2.0 campaign snapshot.
 - [`.github/skills/hype-video/`](./.github/skills/hype-video/) contains the reusable Hype Video skill.
 

@@ -117,6 +117,12 @@ Copy rules:
 
 ### 4. Check it
 
+The current 2.1 cut also has an authored caption track in `src/content.js`. Keep its cues
+in sync when recutting: ordered, non-overlapping, within the full 45-second timeline, and
+at most 24 characters per second. Run `npm test` for timing, seeking, and subtitle checks.
+`npm run captions` writes matching SRT and WebVTT tracks; `render` and `draft` do this
+automatically. Review checks every cue's two-line safe area as well as scene copy bounds.
+
 ```bash
 cd marketing/hype-video
 npm install        # first time only

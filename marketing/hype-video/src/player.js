@@ -4,6 +4,8 @@
 // Nothing ever plays on its own: all animations are paused and window.__seek(t) sets their
 // currentTime, so a frame is a pure function of t. The renderer steps t at 1/fps; the preview
 // drives t from the soundtrack's clock.
+import { captionAt, validateCaptions } from './captions.js';
+
 (() => {
   const BPM = 128;
   const BEAT = 60 / BPM;
@@ -97,7 +99,10 @@
 
   const problems = creativeProblems;
   const ACCENTS = ['blue', 'violet', 'pink', 'orange', 'green', 'cyan', 'red'];
-  const TILE_STEP = { 3: 4, 4: 3, 5: 2, 6: 2 }; // beats between tiles, so the grid is full by beat 12
+  const TILE_STEP = { 3: 2, 4: 3, 5: 2, 6: 2 };
+  const captions = window.HYPE_CONTENT?.captions ?? [];
+  validateCaptions(captions, DURATION);
+  const subtitle = document.getElementById('release-caption');
   const el = (tag, cls, text) => {
     const node = document.createElement(tag);
     if (cls) node.className = cls;
@@ -395,6 +400,11 @@
       const p = Math.max(0, Math.min(1, (clamped - c.t0) / c.len));
       c.el.textContent = c.format(c.from + (c.to - c.from) * c.ease(p));
     }
+    subtitle.textContent = captionAt(captions, clamped);
+    const demoIndex = Math.max(0, Math.min(2, Math.floor((clamped - 15 * BAR) / BAR)));
+    const demoRows = [...document.querySelectorAll('[data-demo-cue]')];
+    demoRows.forEach((row, i) => row.classList.toggle('current', i === demoIndex));
+    document.getElementById('demo-caption').textContent = demoRows[demoIndex].querySelector('span').textContent;
     const frame = Math.round(clamped * 60);
     grain.style.backgroundPosition = `${(frame * 89) % 256}px ${(frame * 151) % 256}px`;
     if (recording && clamped >= recordingStart && clamped < recordingEnd) {
@@ -480,6 +490,35 @@
     if (heading.right > platforms.left - 24 || lineCount(document.getElementById('new-heading')) > 1) {
       problems.push('whatsNew.heading is too long for the header. Shorten it.');
     }
+    for (const [i, cue] of captions.entries()) {
+      seek((cue.start + cue.end) / 2);
+      if (lineCount(subtitle) > 2 || subtitle.scrollHeight > 120) {
+        problems.push(`Caption ${i + 1} does not fit the two-line caption safe area.`);
+      }
+    }
+    const contains = (outer, inner) => inner.left >= outer.left && inner.right <= outer.right
+      && inner.top >= outer.top && inner.bottom <= outer.bottom;
+    seek(11.9 * BAR);
+    if (!contains(document.querySelector('.release-redaction').getBoundingClientRect(),
+      document.querySelector('.sample-row span').getBoundingClientRect())) {
+      problems.push('The solid-redaction illustration must cover the entire demo email.');
+    }
+    seek(14.9 * BAR);
+    for (const preview of document.querySelectorAll('.attachment-preview')) {
+      const box = preview.getBoundingClientRect();
+      for (const target of preview.querySelectorAll('.zoom-dashboard b, .attached-box')) {
+        if (!contains(box, target.getBoundingClientRect())) problems.push('The zoom illustration clips its target or annotation.');
+      }
+    }
+    for (const scene of scenes) {
+      seek((Number(scene.dataset.bar) + Number(scene.dataset.bars) * 0.85) * BAR);
+      for (const node of scene.querySelectorAll('h1, h2, .release-copy, .release-heading, .release-footnote, .caption-platform-note, .outro-settings')) {
+        const box = node.getBoundingClientRect();
+        if (box.left < 48 || box.right > 1872 || box.top < 90 || box.bottom > 920) {
+          problems.push(`${scene.className}: ${node.tagName} escapes the title/caption safe area.`);
+        }
+      }
+    }
   }
 
   // One frame late in every scene, plus one as each "what's new" tile lands.
@@ -489,6 +528,7 @@
     for (const tile of document.querySelectorAll('#new-tiles .tile')) times.push(newsStart + (parseFloat(tile.dataset.at) + 1.5) * BEAT);
     for (const bar of [1.5, 3, 4.5, 6, 7.75, 8.5, 9.5, 10.5, 11.5, 12.75, 13.5, 14.5, 15.5, 16.5]) times.push(bar * BAR);
     times.push(DURATION - 0.05);
+    times.push(...captions.map((cue) => (cue.start + cue.end) / 2));
     return [...new Set(times.map((t) => Math.round(t * 100) / 100))].sort((a, b) => a - b);
   }
 

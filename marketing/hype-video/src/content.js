@@ -1,67 +1,44 @@
-// What the video says about the latest releases. To hype new features, edit this file and
-// re-render. This cut leads with Studio; the download outro stays the same.
-//
-// tiles: 3 to 6 entries, shown in order, one landing every few beats.
-//   title   one line, about 22 characters or fewer
-//   blurb   one sentence, two lines at most (about 44 characters)
-//   accent  blue | violet | pink | orange | green | cyan | red
-//   visual  one of:
-//     { type: 'compare', from: 'PNG', to: 'WebP', ratio: 0.42 }    two bars; the second shrinks to ratio (0–1) of the first
-//     { type: 'toggle', from: 'H.264', to: 'H.265', caption: 'HEVC' }   a switch that flips from -> to
-//     { type: 'emoji', emoji: ['😎', '🎉', '👀'] }                  three emoji; the middle one is selected and rotates
-//     { type: 'slider', from: 100, to: 50, unit: '%', size: [1920, 1080] }   a slider; size (optional) shows scaled dimensions
-//     { type: 'keys', keys: ['⌃', '⌥', '⌘', '1'] }                  key caps pressed in order (up to 5)
-//     { type: 'stat', value: '60 fps', caption: 'GPU pipeline' }    one big number or word
-//     { type: 'list' }                                              a menu of rows with thumbnails
-//     { type: 'panel', tags: ['demo', 'bug', 'ui'] }                a grid with a details pane
-//
-// The renderer refuses to run if a tile's text does not fit, so check with `npm run review`.
+// Shipped 2.1 features on macOS and Windows. Caption times are seconds on the 45-second cut.
 window.HYPE_CONTENT = {
-  breakdown: {
-    lead: 'Beyond Studio.',
-    title: 'More tiny upgrades.',
-  },
   whatsNew: {
-    pill: 'Tiny Clips 2.0',
-    heading: 'And so much more.',
+    pill: 'Tiny Clips 2.1',
+    heading: 'Create with more clarity.',
     platforms: 'macOS + Windows',
     tiles: [
       {
-        title: 'WebP screenshots',
-        blurb: 'Smaller files with adjustable quality.',
+        title: 'Agent Control',
+        blurb: 'Your agent. Your local capture toolkit.',
         accent: 'cyan',
-        visual: { type: 'toggle', from: 'PNG', to: 'WebP', caption: 'Your choice' },
+        visual: { type: 'stat', value: 'CLI + MCP', caption: 'Opt-in. Paired. Scoped.' },
       },
       {
-        title: 'H.265 video',
-        blurb: 'Pick the codec that fits your recording.',
-        accent: 'red',
-        visual: { type: 'toggle', from: 'H.264', to: 'H.265', caption: 'HEVC' },
-      },
-      {
-        title: 'Emoji stickers',
-        blurb: 'Drag, resize, and rotate stickers.',
-        accent: 'orange',
-        visual: { type: 'emoji', emoji: ['😎', '🎉', '👀'] },
-      },
-      {
-        title: 'Scale your exports',
-        blurb: 'Click the resolution, pick 10–100%.',
-        accent: 'green',
-        visual: { type: 'slider', from: 100, to: 50, unit: '%', size: [1920, 1080] },
-      },
-      {
-        title: 'Thumbnail previews',
-        blurb: 'Recent captures show up right in the menu.',
+        title: 'Studio annotations',
+        blurb: 'Point it out. Keep it in the frame.',
         accent: 'pink',
-        visual: { type: 'list' },
+        visual: { type: 'stat', value: 'Make a point.', caption: 'Arrows / Callouts / Shapes' },
       },
       {
-        title: 'Your clips, organized',
-        blurb: 'Preview, tag, and share in one place.',
-        accent: 'blue',
-        visual: { type: 'panel', tags: ['demo', 'bug', 'ui'] },
+        title: 'Captions',
+        blurb: 'Import, edit, check, and export.',
+        accent: 'green',
+        visual: { type: 'toggle', from: 'SRT', to: 'WebVTT', caption: 'Or draw into the MP4' },
       },
     ],
   },
+  captions: [
+    { start: 0, end: 3.75, text: 'Tiny Clips 2.1. Your agent. Your story.' },
+    { start: 3.75, end: 6.5625, text: 'Agent Control gives your own agent a local capture toolkit.' },
+    { start: 6.5625, end: 9.375, text: 'Off by default. Pair once and choose its permissions.' },
+    { start: 9.375, end: 12.1875, text: 'Ask your agent to record a demo and edit it in Studio.' },
+    { start: 12.1875, end: 15, text: 'Export a new video. Sensitive actions still ask first.' },
+    { start: 15, end: 18.75, text: 'Make your point with Studio arrows, callouts, and text.' },
+    { start: 18.75, end: 22.5, text: 'Add shapes, emoji, and redactions. Resize, rotate, and time them.' },
+    { start: 22.5, end: 25.3125, text: 'Attach to the screen to follow zooms and crops.' },
+    { start: 25.3125, end: 28.125, text: 'Or attach to the frame to hold your place.' },
+    { start: 28.125, end: 31.875, text: 'Add captions. Generate on-device where supported, or import a subtitle file.' },
+    { start: 31.875, end: 35.625, text: 'Edit, check, and export subtitles, or draw them into your video.' },
+    { start: 35.625, end: 39.375, text: 'Agent Control. Studio annotations. And captions, too.' },
+    { start: 39.375, end: 42.1875, text: 'Tiny Clips 2.1. Free and open source for macOS and Windows.' },
+    { start: 42.1875, end: 45, text: 'Get Tiny Clips at tinyclips.app.' },
+  ],
 };
