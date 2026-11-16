@@ -1,117 +1,107 @@
-# Tiny Clips hype video
+# Tiny Clips 2.1 release video
 
-A 45-second, 1920×1080, 60 fps promo for Tiny Clips. The Studio 2.0 cut combines an animated
-HTML/CSS composition with user-supplied Studio footage, rendered frame by frame in a headless
-browser. The polished lo-fi soundtrack is synthesized locally in Node.
-The selected creative profile uses subtle motion and an ice (cyan/blue/violet) palette.
+A 45-second, 1920x1080, 60 fps cut highlighting **Agent Control** and **Studio annotations**,
+with a supporting Studio captions segment. Every frame has an authored, burned-in caption,
+so the video works without sound. Matching SRT and WebVTT tracks are generated from the same
+timed copy. Music is the existing locally synthesized, polished lo-fi soundtrack; motion is
+subtle and the palette is ice (cyan/blue/violet). There is no spoken voiceover.
 
-## Hype a new release
+The app and workflow visuals are explicitly labeled **illustrations**, not new app footage.
+No private captures, pairing tokens, downloaded speech models, external artwork, or remote
+services are used. The approved Studio 2.0 snapshot in `../studio-launch/` is unchanged.
 
-Edit `src/content.js` — it holds the “What’s new” tiles and the line that introduces them — then:
+## Render and review
 
-```bash
-npm run review     # contact sheets in out/review/, and a check that every tile's text fits
-npm run render     # out/tiny-clips-hype.mp4
-```
-
-The `hype-video` skill (`../../.github/skills/hype-video/SKILL.md`) walks through the whole flow,
-including a short creative brief, choosing features from the changelogs, and drafting the post.
-
-## Render it
-
-Requires Node 22.12+, `ffmpeg` on your `PATH`, and Microsoft Edge or Google Chrome installed (set
-`BROWSER_PATH` to point at a different Chromium-based browser).
+Requires Node 22.12+, FFmpeg on `PATH`, and Google Chrome, Microsoft Edge, or Chromium.
+Set `BROWSER_PATH` to select another Chromium executable.
 
 ```bash
 cd marketing/hype-video
-npm install
-npm run render     # out/tiny-clips-hype.mp4  (60 fps, about three minutes)
-npm run draft      # out/tiny-clips-hype-draft.mp4  (30 fps, under a minute)
-npm run review     # one frame per scene as contact sheets -> out/review/
-npm run preview    # live preview with a scrubber and the selected soundtrack
+npm ci
+npm test           # caption timing, seeking, readability, and subtitle serialization
+npm run review    # layout checks + contact sheets in out/review/
+npm run render    # out/tiny-clips-hype.mp4: 45 s, 1080p60, H.264 + AAC
+npm run draft     # out/tiny-clips-hype-draft.mp4: 1080p30
+npm run preview   # local, scrub-enabled preview with music
+npm run captions  # out/tiny-clips-2.1.srt + out/tiny-clips-2.1.vtt
 ```
 
-`out/` is ignored by git. Useful extras:
+`out/` and `node_modules/` are ignored. Do not commit generated drafts, audio, or final renders;
+share the MP4 through the release/media channel. SRT/VTT are alternative upload tracks; do not
+enable one on top of the burned-in version unless the player lets viewers hide it.
 
 ```bash
-node scripts/render.mjs --still 5,12.5,43     # PNG stills at those seconds -> out/stills/
-node scripts/render.mjs --from 15 --to 21     # render part of the timeline
-node scripts/render.mjs --no-audio            # picture only, for adding your own music
+node scripts/render.mjs --still 5,18,26,33,43
+node scripts/render.mjs --from 15 --to 22.5
+node scripts/render.mjs --no-audio
+```
+
+Sidecars describe the **full** 45-second cut, not a `--from`/`--to` excerpt. Check the finished
+file with:
+
+```bash
+ffprobe -v error -show_entries stream=codec_name,width,height,r_frame_rate:format=duration \
+  -of default=nw=1 out/tiny-clips-hype.mp4
+ffmpeg -v error -i out/tiny-clips-hype.mp4 -f null -
 ```
 
 ## Storyboard
 
-Everything is cut to a 128 BPM grid: one bar is 1.875 s and the piece is 24 bars long.
+The existing 128 BPM grid is unchanged: one bar is 1.875 seconds, 24 bars is 45 seconds.
 
 | Bars | Time | Scene |
 | --- | --- | --- |
-| 0–1 | 0:00 | Tiny Clips 2.0: Hello, Studio |
-| 1–4 | 0:01.875 | Animated separate screen/camera layers, bubble to side-by-side layouts, backgrounds and padding |
-| 4–7 | 0:07.5 | Actual Windows Studio controls/timeline with a privacy-safe, illustrative animated canvas |
-| 7–9 | 0:13.125 | Zoom, cut, speed, MP4 export, editable projects, and enabling Studio Preview |
-| 9–12 | 0:16.875 | A rendered Studio video recap and Preview call to action |
-| 12–15 | 0:22.5 | Screenshot, video, GIF; microphone and system audio; menu bar and tray |
-| 15–17 | 0:28.125 | Screenshot editor: arrows, steps, redaction, stickers, text, backgrounds |
-| 17–21 | 0:31.875 | Six recent cross-platform features from `content.js` |
-| 21–24 | 0:39.4 | Tiny Clips · Available on macOS and Windows · tinyclips.app |
+| 0-2 | 0:00-0:03.750 | Tiny Clips 2.1: Your agent. Your story. |
+| 2-5 | 0:03.750-0:09.375 | Agent Control: opt in, pair, choose scopes, revoke anytime |
+| 5-8 | 0:09.375-0:15 | Agent workflow: record a target window, edit Studio, export a new MP4 |
+| 8-12 | 0:15-0:22.500 | Studio arrow, callout, shape, emoji, solid redaction, selection handles, annotation lane |
+| 12-15 | 0:22.500-0:28.125 | Screen-attached annotations follow zoom; frame-attached annotations stay put |
+| 15-19 | 0:28.125-0:35.625 | On-device generation/import, transcript editing, checks, subtitle export, drawn captions |
+| 19-21 | 0:35.625-0:39.375 | Three-tile recap: Agent Control, Studio annotations, captions |
+| 21-24 | 0:39.375-0:45 | macOS + Windows, free/open source, tinyclips.app, Settings reminder |
 
-Studio owns exactly the first 22.5 seconds, including the release title and rendered-video
-recap. Its early-preview status and opt-in setting are explicit; ordinary video recording is
-not presented as Studio. Scene transitions and background movement have been softened for
-this cut, and a melodic lo-fi motif gives the soundtrack a clearer music lead. The second half
-highlights shipped cross-platform additions, rather than implying every tile first shipped in
-2.0. The established download outro is unchanged.
-The result preview puts its export controls along the top of the video and the Scene 01 layout
-label below them.
+## Product accuracy
 
-### Recorded Studio media
+Copy is based on the shipped 2.1 sections of the app's
+[macOS changelog](https://github.com/jamesmontemagno/tiny-clips/blob/main/CHANGELOG.md) and
+[Windows changelog](https://github.com/jamesmontemagno/tiny-clips/blob/main/windows/CHANGELOG.md),
+plus the [Agent integration guide](https://github.com/jamesmontemagno/tiny-clips/blob/main/docs/agent-integration.md).
 
-`assets/studio-demo.mp4` is a silent 7.5-second excerpt (8.0–15.5 seconds) of the supplied
-2026-10-15 Studio recording. The original preview area is **removed from the encoded asset**,
-not just hidden in CSS, so nested conversation and project text cannot leak into the video.
-The real inspector, controls, cursor, and timeline remain. The composition replaces the
-removed preview with a clean animated illustration, labeled as such.
+- Agent Control is off by default. The agent runs on the same computer, pairs with approval,
+  and only gets granted scopes. OS permissions still apply. Deleting, uploading, and discarding
+  still ask first; every request is logged. Tiny Clips supplies tools, not an AI model.
+- Studio remains a Preview. The cut reminds viewers to enable it but does not claim that it
+  starts disabled; 2.1 preserves a user's saved choice. The pictured workflow needs Studio on.
+- Caption generation needs macOS 26+ on supported Macs. Windows downloads a local speech model
+  on first use. Other Macs can still import, edit, export, and draw captions. Audio stays local.
+- Solid redaction is shown for secrets. Blur/pixelation are not presented as guaranteed
+  removal of sensitive information.
+- This promo's captions are authored marketing copy, not output of Tiny Clips speech recognition.
 
-`scripts/studio-media.mjs` extracts 225 JPEG frames into ignored `out/studio-frames/` before
-review, rendering, or preview. Rendering waits for each selected frame to decode, so seeking
-backward, parallel workers, and still exports all produce the correct frame. Source footage
-is 30 fps, held for two frames in the 60 fps final; the surrounding animation is native 60 fps.
-Missing or short media fails explicitly.
+## Editing
 
-To replace the footage, use an approved 7.5-second, 30 fps clip, remove private content before
-putting it in `assets/`, and adjust the illustrative canvas bounds in `src/styles.css` if the
-editor's geometry changes. Do not commit the unredacted original.
+- `src/index.html` contains the scene layout. Keep `data-bar`/`data-bars` contiguous and on
+  the beat grid. Keep illustrations labeled.
+- `src/content.js` holds the recap tiles and full-length `captions` track. Caption cues must be
+  ordered, non-overlapping, single-line source text, and at most 24 characters per second.
+  The player wraps them into at most two lines in a reserved safe area.
+- `src/captions.js` is shared by the browser and `scripts/captions.mjs`; SRT/VTT timestamps
+  use the same cue data as the burned-in text.
+- `src/release.css` styles this cut without changing the preserved Studio snapshot.
+  `src/styles.css` provides the existing design system and timeline primitives.
+- `src/player.js` keeps animations paused on one deterministic seekable timeline. Reviews check
+  every caption's layout and scene copy bounds, plus recap tile/heading fit.
+- `src/creative.js` preserves the previous polished/subtle/lo-fi/ice creative direction.
+  `scripts/audio.mjs` synthesizes the soundtrack locally.
 
-## Editing it
+The old privacy-safe `assets/studio-demo.mp4` and `scripts/studio-media.mjs` remain available
+for future footage-led cuts, but this illustrated cut does not extract or depend on them.
 
-- `src/content.js` holds the release-specific copy: the “What’s new” tiles (3 to 6), their
-  visuals,   and an optional breakdown line. The Studio-first storyboard also lives in `src/index.html`.
-- `src/creative.js` holds the selected campaign angle, hype level, motion intensity, music style,
-  and visual palette. The `hype-video` skill asks about any choices not specified in the request.
-  Supported values are:
+## Suggested social copy
 
-  | Setting | Values |
-  | --- | --- |
-  | `campaign` | `all-in-one`, `new-release`, `creator`, `developer` |
-  | `hypeLevel` | `polished`, `upbeat`, `full-send` |
-  | `motionIntensity` | `subtle`, `punchy`, `high-impact` |
-  | `musicStyle` | `electronic`, `cinematic`, `funk`, `lofi`, `silent` |
-  | `visualTheme` | `neon`, `sunset`, `ice` |
+Tiny Clips 2.1 is here: Agent Control, Studio annotations, and captions. Let your agent capture,
+point out what matters, and tell a clearer story. Free and open source for macOS + Windows.
+tinyclips.app
 
-  Defaults preserve the original video. All music is synthesized locally; `silent` removes any
-  previously generated soundtrack and renders without muxing audio. `npm run preview` regenerates
-  the selected soundtrack first, so it cannot accidentally use one from an earlier profile. The
-  timeline stays at 128 BPM, 24 bars, and 45 seconds for every profile.
-- `src/index.html` holds the scenes. A scene is a `<section class="scene" data-bar="8" data-bars="1">`;
-  elements inside are timed with `data-at` in beats from the start of their scene (`data-at="1.5"`)
-  or in seconds (`data-at="0.3s"`).
-- `src/styles.css` holds the look and every animation. Entrances are the `a-*` classes (`a-slam`,
-  `a-pop`, `a-up`, …); tile visuals are the `.v-*` rules.
-- `src/player.js` builds the tiles from `content.js`, puts every CSS animation on one timeline,
-  and exposes `window.__seek(seconds)`. Nothing plays on its own, so a frame depends only on its
-  timestamp.
-- `scripts/audio.mjs` is the soundtrack; the arrangement section maps instruments to bars. If you
-  change the tempo or length, change `BPM` and `BARS` in both `audio.mjs` and `player.js`.
-
-The real app screenshots come from `docs/` (`docs/windows-art/editor.png`, `tray.png`,
-`video-editor.png`, and `docs/tinyclips.png`); replace those files to refresh them here too.
+Alternative: Your agent. Your story. Tiny Clips 2.1 brings opt-in Agent Control, Studio arrows,
+callouts and emoji, plus captions. Free and open source for macOS + Windows. tinyclips.app
