@@ -1,9 +1,9 @@
 # Tiny Clips hype video
 
-A 45-second, 1920×1080, 60 fps promo for Tiny Clips. The Studio 2.0 cut combines an animated
+A 45-second, 1920×1080, 60 fps promo for Tiny Clips. The Tiny Clips 2.3.0 cut combines an animated
 HTML/CSS composition with user-supplied Studio footage, rendered frame by frame in a headless
-browser. The polished lo-fi soundtrack is synthesized locally in Node.
-The selected creative profile uses subtle motion and an ice (cyan/blue/violet) palette.
+browser. The lo-fi soundtrack is synthesized locally in Node.
+The selected creative profile uses subtle motion and a neon blue-violet palette.
 
 ## Hype a new release
 
@@ -45,22 +45,21 @@ Everything is cut to a 128 BPM grid: one bar is 1.875 s and the piece is 24 bars
 
 | Bars | Time | Scene |
 | --- | --- | --- |
-| 0–1 | 0:00 | Tiny Clips 2.0: Hello, Studio |
+| 0–1 | 0:00 | Tiny Clips 2.3.0: Studio, ready |
 | 1–4 | 0:01.875 | Animated separate screen/camera layers, bubble to side-by-side layouts, backgrounds and padding |
 | 4–7 | 0:07.5 | Actual Windows Studio controls/timeline with a privacy-safe, illustrative animated canvas |
-| 7–9 | 0:13.125 | Zoom, cut, speed, MP4 export, editable projects, and enabling Studio Preview |
-| 9–12 | 0:16.875 | A rendered Studio video recap and Preview call to action |
+| 7–9 | 0:13.125 | Zoom, cut, speed, MP4 export, and editable projects |
+| 9–12 | 0:16.875 | A rendered Studio video recap and generally available call to action |
 | 12–15 | 0:22.5 | Screenshot, video, GIF; microphone and system audio; menu bar and tray |
 | 15–17 | 0:28.125 | Screenshot editor: arrows, steps, redaction, stickers, text, backgrounds |
-| 17–21 | 0:31.875 | Six recent cross-platform features from `content.js` |
+| 17–21 | 0:31.875 | Studio, Agent Control, and everyday enhancements from `content.js` |
 | 21–24 | 0:39.4 | Tiny Clips · Available on macOS and Windows · tinyclips.app |
 
-Studio owns exactly the first 22.5 seconds, including the release title and rendered-video
-recap. Its early-preview status and opt-in setting are explicit; ordinary video recording is
-not presented as Studio. Scene transitions and background movement have been softened for
-this cut, and a melodic lo-fi motif gives the soundtrack a clearer music lead. The second half
-highlights shipped cross-platform additions, rather than implying every tile first shipped in
-2.0. The established download outro is unchanged.
+Studio owns exactly the first 22.5 seconds, including the 2.3.0 release title and rendered-video
+recap. Studio is presented as generally available. Scene transitions and background movement
+remain subtle, and a melodic lo-fi motif gives the soundtrack a clear music lead. The second half
+highlights shipped cross-platform additions: Studio, Agent Control, and everyday 2.3.0 upgrades.
+The established download outro is unchanged.
 The result preview puts its export controls along the top of the video and the Scene 01 layout
 label below them.
 

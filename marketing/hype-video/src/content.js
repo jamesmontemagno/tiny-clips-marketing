@@ -1,5 +1,5 @@
 // What the video says about the latest releases. To hype new features, edit this file and
-// re-render. This cut leads with Studio; the download outro stays the same.
+// re-render. This cut leads with Studio, Agent Control, and everyday 2.3.0 upgrades.
 //
 // tiles: 3 to 6 entries, shown in order, one landing every few beats.
 //   title   one line, about 22 characters or fewer
@@ -18,49 +18,31 @@
 // The renderer refuses to run if a tile's text does not fit, so check with `npm run review`.
 window.HYPE_CONTENT = {
   breakdown: {
-    lead: 'Beyond Studio.',
-    title: 'More tiny upgrades.',
+    lead: 'The 2.3.0 release.',
+    title: 'Big things, tiny app.',
   },
   whatsNew: {
-    pill: 'Tiny Clips 2.0',
+    pill: 'Tiny Clips 2.3.0',
     heading: 'And so much more.',
     platforms: 'macOS + Windows',
     tiles: [
       {
-        title: 'WebP screenshots',
-        blurb: 'Smaller files with adjustable quality.',
+        title: 'Studio is ready',
+        blurb: 'Capture, compose, cut, and export.',
+        accent: 'violet',
+        visual: { type: 'stat', value: 'Studio', caption: 'Generally available' },
+      },
+      {
+        title: 'Agent Control',
+        blurb: 'Let agents capture, edit, and export.',
         accent: 'cyan',
-        visual: { type: 'toggle', from: 'PNG', to: 'WebP', caption: 'Your choice' },
+        visual: { type: 'panel', tags: ['Capture', 'Studio', 'Library'] },
       },
       {
-        title: 'H.265 video',
-        blurb: 'Pick the codec that fits your recording.',
-        accent: 'red',
-        visual: { type: 'toggle', from: 'H.264', to: 'H.265', caption: 'HEVC' },
-      },
-      {
-        title: 'Emoji stickers',
-        blurb: 'Drag, resize, and rotate stickers.',
+        title: 'Open & find',
+        blurb: 'Direct MP4/MOV and faster Recent Captures.',
         accent: 'orange',
-        visual: { type: 'emoji', emoji: ['😎', '🎉', '👀'] },
-      },
-      {
-        title: 'Scale your exports',
-        blurb: 'Click the resolution, pick 10–100%.',
-        accent: 'green',
-        visual: { type: 'slider', from: 100, to: 50, unit: '%', size: [1920, 1080] },
-      },
-      {
-        title: 'Thumbnail previews',
-        blurb: 'Recent captures show up right in the menu.',
-        accent: 'pink',
-        visual: { type: 'list' },
-      },
-      {
-        title: 'Your clips, organized',
-        blurb: 'Preview, tag, and share in one place.',
-        accent: 'blue',
-        visual: { type: 'panel', tags: ['demo', 'bug', 'ui'] },
+        visual: { type: 'toggle', from: 'MP4 / MOV', to: 'Studio', caption: 'Open directly' },
       },
     ],
   },
